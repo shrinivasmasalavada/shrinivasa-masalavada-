@@ -1,23 +1,24 @@
 <!DOCTYPE html>
-<html lang="kn">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Object Detection - ಕನ್ನಡ</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Real-Time Object Detection</title>
     <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs"></script>
     <script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/coco-ssd"></script>
     <style>
-        body { font-family: sans-serif; display: flex; flex-direction: column; align-items: center; }
-        video { border: 2px solid #333; border-radius: 10px; }
-        canvas { position: absolute; left: 50%; transform: translateX(-50%); }
-        #status { color: red; font-weight: bold; }
+        body { font-family: sans-serif; display: flex; flex-direction: column; align-items: center; background: #f0f0f0; }
+        .container { position: relative; margin-top: 20px; }
+        video, canvas { position: absolute; left: 0; top: 0; border-radius: 8px; }
+        #status { margin-top: 10px; font-weight: bold; color: #555; }
     </style>
 </head>
 <body>
 
-    <h2>AI ಆಬ್ಜೆಕ್ಟ್ ಡಿಟೆಕ್ಷನ್ (Webcam)</h2>
-    <p id="status">ಮಾಡೆಲ್ ಲೋಡ್ ಆಗುತ್ತಿದೆ, ದಯವಿಟ್ಟು ಕಾಯಿರಿ...</p>
-    
-    <div style="position: relative;">
+    <h2>AI Object Detection</h2>
+    <p id="status">Loading Model... Please wait.</p>
+
+    <div class="container">
         <video id="webcam" autoplay muted width="640" height="480"></video>
         <canvas id="canvas" width="640" height="480"></canvas>
     </div>
@@ -28,9 +29,9 @@
         const ctx = canvas.getContext('2d');
         const status = document.getElementById('status');
 
-        let model;
+        let model = undefined;
 
-        // 1. ವೆಬ್‌ಕ್ಯಾಮ್ ಆನ್ ಮಾಡುವುದು
+        // 1. Initialize the Webcam
         async function setupWebcam() {
             const stream = await navigator.mediaDevices.getUserMedia({ video: true });
             video.srcObject = stream;
@@ -39,44 +40,42 @@
             });
         }
 
-        // 2. ಆಬ್ಜೆಕ್ಟ್ ಡಿಟೆಕ್ಟ್ ಮಾಡುವ ಫಂಕ್ಷನ್
-        async function detectObjects() {
+        // 2. Predict & Draw Boxes
+        async function predict() {
             const predictions = await model.detect(video);
             
-            // ಕ್ಯಾನ್ವಾಸ್ ಕ್ಲಿಯರ್ ಮಾಡುವುದು
+            // Clear previous drawings
             ctx.clearRect(0, 0, canvas.width, canvas.height);
 
             predictions.forEach(prediction => {
-                // ಬಾಕ್ಸ್ ಬಿಡಿಸುವುದು
-                ctx.beginPath();
-                ctx.rect(...prediction.bbox);
-                ctx.lineWidth = 2;
+                // Draw the bounding box
                 ctx.strokeStyle = '#00FF00';
-                ctx.fillStyle = '#00FF00';
-                ctx.stroke();
+                ctx.lineWidth = 4;
+                ctx.strokeRect(...prediction.bbox);
 
-                // ವಸ್ತುವಿನ ಹೆಸರು ಬರೆಯುವುದು
-                ctx.font = '18px Arial';
-                ctx.fillText(
-                    `${prediction.class} (${Math.round(prediction.score * 100)}%)`,
-                    prediction.bbox[0], 
-                    prediction.bbox[1] > 10 ? prediction.bbox[1] - 5 : 10
-                );
+                // Draw the label background
+                ctx.fillStyle = '#00FF00';
+                const textWidth = ctx.measureText(prediction.class).width;
+                ctx.fillRect(prediction.bbox[0], prediction.bbox[1], textWidth + 10, 20);
+
+                // Draw the text
+                ctx.fillStyle = '#000000';
+                ctx.fillText(prediction.class + ' - ' + Math.round(prediction.score * 100) + '%', prediction.bbox[0] + 5, prediction.bbox[1] + 15);
             });
 
-            // ನಿರಂತರವಾಗಿ ಡಿಟೆಕ್ಟ್ ಮಾಡಲು ಲೂಪ್
-            requestAnimationFrame(detectObjects);
+            // Keep detecting
+            window.requestAnimationFrame(predict);
         }
 
-        // 3. ಮುಖ್ಯ ಪ್ರಕ್ರಿಯೆ ಆರಂಭ
-        async function run() {
+        // 3. Start the App
+        async function main() {
             model = await cocoSsd.load();
-            status.innerText = "ಮಾಡೆಲ್ ರೆಡಿಯಾಗಿದೆ! ಕ್ಯಾಮರಾ ನೋಡಿ.";
+            status.innerText = "Model Loaded! Point your camera at something.";
             await setupWebcam();
-            detectObjects();
+            predict();
         }
 
-        run();
+        main();
     </script>
 </body>
 </html>
