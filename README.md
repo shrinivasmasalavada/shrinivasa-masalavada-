@@ -3,110 +3,59 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ಗೋರಕ್ಷ (Goraksha)</title>
+    <title>Fun Search Bar</title>
     <style>
-        /* ವಿನ್ಯಾಸ (Styling) */
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f9f9f9;
-            text-align: center;
-        }
-
-        header {
-            background-color: #2e7d32;
-            color: white;
-            padding: 20px;
-            font-size: 24px;
-            font-weight: bold;
-        }
-
-        .search-container {
-            margin: 30px auto;
-        }
-
-        #searchInput {
-            padding: 12px;
-            width: 80%;
-            max-width: 400px;
-            border: 2px solid #2e7d32;
-            border-radius: 25px;
-            outline: none;
-            font-size: 16px;
-        }
-
-        #result {
-            margin-top: 20px;
-            font-size: 20px;
-            color: #d32f2f;
-            font-weight: bold;
-            height: 30px;
-        }
-
-        /* ಹಸುಗಳ ಫೋಟೋ ಮೂಮೆಂಟ್ (Animation) */
-        .cow-slider {
-            width: 100%;
-            overflow: hidden;
-            background: #fff;
-            padding: 20px 0;
-            margin-top: 50px;
-            border-top: 2px solid #eee;
-        }
-
-        .cow-track {
+            font-family: 'Arial', sans-serif;
             display: flex;
-            width: calc(250px * 6);
-            animation: scroll 15s linear infinite;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            background-color: #f0f2f5;
         }
-
-        .cow-track img {
-            width: 200px;
-            height: 150px;
-            margin: 0 20px;
+        .container {
+            text-align: center;
+            background: white;
+            padding: 30px;
             border-radius: 10px;
-            object-fit: cover;
             box-shadow: 0 4px 8px rgba(0,0,0,0.1);
         }
-
-        @keyframes scroll {
-            0% { transform: translateX(0); }
-            100% { transform: translateX(calc(-250px * 3)); }
+        input {
+            padding: 10px;
+            width: 250px;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+        #message {
+            margin-top: 20px;
+            font-size: 20px;
+            font-weight: bold;
+            color: #e74c3c;
+            height: 30px; /* ಜಾಗ ಖಾಲಿ ಇರಲು */
         }
     </style>
 </head>
 <body>
 
-    <header>ಗೋರಕ್ಷ</header>
-
-    <div class="search-container">
-        <input type="text" id="searchInput" onkeyup="searchDoctor()" placeholder="ನಿಮ್ಮ ಊರಿನ ಹೆಸರು ಟೈಪ್ ಮಾಡಿ (ಉದಾ: ಹಮ್ಮಿಗಿ)...">
-        <div id="result"></div>
-    </div>
-
-    <div class="cow-slider">
-        <div class="cow-track">
-            <img src="https://images.unsplash.com/photo-1546445317-29f4545e9d53?auto=format&fit=crop&w=200&q=80" alt="Cow 1">
-            <img src="https://images.unsplash.com/photo-1500595046743-cd271d694d30?auto=format&fit=crop&w=200&q=80" alt="Cow 2">
-            <img src="https://images.unsplash.com/photo-1527153358354-fbd18df09b55?auto=format&fit=crop&w=200&q=80" alt="Cow 3">
-            <img src="https://images.unsplash.com/photo-1546445317-29f4545e9d53?auto=format&fit=crop&w=200&q=80" alt="Cow 1">
-            <img src="https://images.unsplash.com/photo-1500595046743-cd271d694d30?auto=format&fit=crop&w=200&q=80" alt="Cow 2">
-            <img src="https://images.unsplash.com/photo-1527153358354-fbd18df09b55?auto=format&fit=crop&w=200&q=80" alt="Cow 3">
-        </div>
+    <div class="container">
+        <h2>ಏನನ್ನಾದರೂ ಟೈಪ್ ಮಾಡಿ...</h2>
+        <input type="text" id="searchBar" placeholder="ಇಲ್ಲಿ ಟೈಪ್ ಮಾಡಿ..." oninput="showMessage()">
+        <div id="message"></div>
     </div>
 
     <script>
-        function searchDoctor() {
-            let input = document.getElementById('searchInput').value.trim();
-            let resultDiv = document.getElementById('result');
+        function showMessage() {
+            const inputVal = document.getElementById('searchBar').value;
+            const messageDiv = document.getElementById('message');
 
-            // ಹಮ್ಮಿಗಿ ಅಥವಾ Hammigi ಎಂದು ಟೈಪ್ ಮಾಡಿದಾಗ ಕೆಲಸ ಮಾಡುತ್ತದೆ
-            if (input === "ಹಮ್ಮಿಗಿ" || input.toLowerCase() === "hammigi") {
-                resultDiv.innerHTML = "ಡಾಕ್ಟರ್ ಮೊಬೈಲ್ ಸಂಖ್ಯೆ: 7090593584";
-            } else if (input === "") {
-                resultDiv.innerHTML = "";
-            } else {
-                resultDiv.innerHTML = "ಮಾಹಿತಿ ಲಭ್ಯವಿಲ್ಲ";
+            // ಸರ್ಚ್ ಬಾರ್‌ನಲ್ಲಿ 'hi' ಎಂದು ಟೈಪ್ ಮಾಡಿದರೆ ಮಾತ್ರ ಬರಬೇಕೆಂದರೆ ಈ ಕೆಳಗಿನ 'if' ಬಳಸಿ
+            // ಇಲ್ಲದಿದ್ದರೆ ಯಾವುದಾದರೂ ಅಕ್ಷರ ಟೈಪ್ ಮಾಡಿದ ತಕ್ಷಣ ಮೆಸೇಜ್ ಬರುತ್ತದೆ.
+            if (inputVal.toLowerCase() === 'hi') {
+                messageDiv.innerText = "hello gaandu na kano";
+            } else if (inputVal === "") {
+                messageDiv.innerText = "";
             }
         }
     </script>
