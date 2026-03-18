@@ -1,19 +1,20 @@
 import requests
 
-def get_repo_info(owner, repo_name):
-    # GitHub Public API URL
-    url = f"https://api.github.com/repos/{owner}/{repo_name}"
+def get_github_user(username):
+    # User API endpoint
+    url = f"https://api.github.com/users/{username}"
     
     response = requests.get(url)
     
     if response.status_code == 200:
-        data = response.json()
-        print(f"Repository Name: {data['name']}")
-        print(f"Description: {data['description']}")
-        print(f"Stars: {data['stargazers_count']}")
-        print(f"Language: {data['language']}")
+        user_data = response.json()
+        print(f"--- {username} Profile Details ---")
+        print(f"Hesar: {user_data.get('name')}")
+        print(f"Bio: {user_data.get('bio')}")
+        print(f"Public Repos: {user_data.get('public_repos')}")
+        print(f"Followers: {user_data.get('followers')}")
     else:
-        print("Kshami-si, repository mahithi sigalilla.")
+        print("Kshami-si, aa user mahithi sigalilla.")
 
-# Udaharanege: Google na 'jax' repository
-get_repo_info('google', 'jax')
+# Udaharanege: 'torvalds' (Linux creator)
+get_github_user('torvalds')
