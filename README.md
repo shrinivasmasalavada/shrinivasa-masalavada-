@@ -1,83 +1,101 @@
-<!DOCTYPE html>
-<html lang="kn">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Eco Spice | Online Shopping for Sustainable Spices</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <style>
-        body { font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; background-color: #f1f3f6; }
-        .amazon-blue { background-color: #232f3e; }
-        .flipkart-blue { background-color: #2874f0; }
-        .search-shadow { box-shadow: 0 2px 4px 0 rgba(0,0,0,.23); }
-    </style>
-</head>
-<body>
+\documentclass[10pt,a4paper]{article}
 
-    <nav class="flipkart-blue p-3 sticky top-0 z-50">
-        <div class="max-w-7xl mx-auto flex items-center justify-between gap-4">
-            <div class="text-white text-2xl font-bold italic">
-                Eco<span class="text-yellow-400">Spice</span>
-            </div>
+% --- Packages ---
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+\usepackage[margin=0.75in]{geometry}
+\usepackage{titlesec}
+\usepackage{enumitem}
+\usepackage{hyperref}
+\usepackage{xcolor}
 
-            <div class="flex-grow max-w-2xl relative">
-                <input type="text" placeholder="Search for eco-friendly spices, pods, and more" 
-                       class="w-full py-2 px-4 rounded-sm outline-none search-shadow">
-                <button class="absolute right-0 top-0 h-full px-4 text-blue-600">
-                    <i class="fas fa-search"></i>
-                </button>
-            </div>
+% --- Formatting ---
+\hypersetup{colorlinks=true, urlcolor=blue, linkcolor=black}
+\urlstyle{same}
 
-            <div class="flex items-center gap-8 text-white font-semibold">
-                <button class="bg-white text-blue-600 px-8 py-1 rounded-sm">Login</button>
-                <a href="#" class="hidden md:block">Become a Seller</a>
-                <a href="#" class="flex items-center gap-2">
-                    <i class="fas fa-shopping-cart"></i> Cart
-                </a>
-            </div>
-        </div>
-    </nav>
+\titleformat{\section}{\large\bfseries\uppercase}{}{0em}{}[\titlerule]
+\titlespacing{\section}{0pt}{10pt}{5pt}
 
-    <div class="bg-white shadow-sm py-3 mb-4 hidden md:block">
-        <div class="max-w-7xl mx-auto flex justify-around text-sm font-medium text-gray-700">
-            <a href="#" class="hover:text-blue-600">Spices Pods</a>
-            <a href="#" class="hover:text-blue-600">Combo Kits</a>
-            <a href="#" class="hover:text-blue-600">Sustainable Packaging</a>
-            <a href="#" class="hover:text-blue-600">Recipes</a>
-            <a href="#" class="hover:text-blue-600">Eco-Tracker</a>
-            <a href="#" class="hover:text-blue-600">Gift Boxes</a>
-        </div>
-    </div>
+\setlist[itemize]{noitemsep, topsep=2pt, leftmargin=1.2em}
+\pagestyle{empty}
 
-    <div class="max-w-full mx-auto mb-6">
-        <div class="relative h-[450px] bg-gray-200 overflow-hidden">
-            <img src="URL_OF_YOUR_FIRST_IMAGE" class="w-full h-full object-cover" alt="Eco Spice Banner">
-            <div class="absolute inset-0 bg-gradient-to-r from-black/50 to-transparent flex items-center p-12">
-                <div class="text-white">
-                    <h2 class="text-5xl font-bold mb-4">Simplifying Flavors, <br> Sustainably</h2>
-                    <p class="text-xl mb-6">First-of-its-kind edible spice pods for your kitchen.</p>
-                    <button class="bg-yellow-400 text-black px-10 py-3 rounded-md font-bold text-lg hover:bg-yellow-500">Shop Now</button>
-                </div>
-            </div>
-        </div>
-    </div>
+% --- Resume Start ---
+\begin{document}
 
-    <div class="max-w-7xl mx-auto px-4 mb-10">
-        <div class="flex justify-between items-end mb-4">
-            <h3 class="text-2xl font-bold text-gray-800">New Arrivals in Eco Spices</h3>
-            <a href="#" class="bg-blue-600 text-white px-4 py-2 text-sm rounded-sm">VIEW ALL</a>
-        </div>
-        
-        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
-            
-            <div class="bg-white p-4 hover:shadow-xl transition group">
-                <div class="h-56 overflow-hidden mb-4">
-                    <img src="URL_OF_YOUR_POD_IMAGE" class="w-full h-full object-contain group-hover:scale-105 transition" alt="Spice Pods">
-                </div>
-                <h4 class="text-gray-800 font-medium truncate">Eco Spice Pro - Combo Kit (40 Pods)</h4>
-                <div class="flex items-center gap-2 my-2">
-                    <span class="bg-green-600 text-white text-[10px] px-1 rounded-sm">4.5 ★</span>
-                    <span class="text-gray-400 text-xs font-semibold">(2,345)</span>
-                </div>
-                <div class
+% --- Header ---
+\begin{center}
+    {\Huge \textbf{SHRINIVASA MASALAVADA}} \\
+    \vspace{4pt}
+    \small 
+    Phone: +91 9886361791 $|$ 
+    Email: \href{mailto:Shrinivasamasalavade@gmail.com}{Shrinivasamasalavade@gmail.com} $|$ 
+    \href{https://linkedin.com}{LinkedIn} $|$ \href{https://github.com}{GitHub}
+\end{center}
+
+% --- Career Objective ---
+\section{Career Objective}
+Innovation-driven BCA student and Embedded Systems Intern at IIT Dharwad. Passionate about building scalable, technology-driven solutions for agriculture and autonomous systems. Seeking to leverage expertise in Python, AI/ML, and Computer Vision to contribute to high-impact R\&D and technology entrepreneurship.
+
+% --- Education ---
+\section{Education}
+\textbf{Bachelor of Computer Applications (BCA)} \hfill Expected 2026 \\
+\textit{Final Year Student}
+
+% --- Skills ---
+\section{Key Skills}
+\begin{itemize}
+    \item \textbf{Programming:} Python, C, C++, HTML/CSS (Basic)
+    \item \textbf{Technologies:} IoT, Sensors, Image/Vision Processing, Autonomous Systems
+    \item \textbf{AI \& Computer Vision:} YOLO, OpenCV, Mediapipe, Real-Time Object Detection
+    \item \textbf{Tools \& OS:} Git, Linux (Ubuntu), VS Code, Embedded System Design
+    \item \textbf{Soft Skills:} Technical Communication, Research Mindset, Cross-cultural Exchange
+\end{itemize}
+
+% --- Experience / Internships ---
+\section{Professional Experience}
+\textbf{Intern - Embedded Systems \& AI} \hfill March 2026 -- Present \\
+\textit{Indian Institute of Technology (IIT) Dharwad}
+\begin{itemize}
+    \item Engaging in advanced training on Wireless Networking and Industrial AI.
+    \item Focusing on Real-Time AI Object Detection for industrial and environmental safety.
+\end{itemize}
+
+% --- Projects ---
+\section{Major Projects}
+
+\textbf{Wildlife Collision Avoidance System (Ongoing)}
+\begin{itemize}
+    \item Developing a system to detect animals (e.g., elephants) on railway tracks using thermal cameras and AI.
+    \item Designed to alert train operators from 4-5km away to prevent accidents.
+\end{itemize}
+
+\textbf{Autonomous IoT-Based Plant Recognition and Control System}
+\begin{itemize}
+    \item Integrated IoT sensors with computer vision for automated plant health monitoring and decision-making.
+    \item \textbf{Recognition:} Project appreciated by Dr. Srivari Chandrasekhar, Secretary, DST, Govt. of India.
+\end{itemize}
+
+\textbf{GoRaksha - Cow Safety \& Village Veterinary Support}
+\begin{itemize}
+    \item Designed a prototype mobile application connecting rural farmers with veterinary doctors.
+    \item Features include emergency alerts and future scope for AI-based symptom analysis.
+\end{itemize}
+
+% --- Achievements ---
+\section{Achievements \& Recognition}
+\begin{itemize}
+    \item \textbf{National Recognition:} Showcased innovation at Vigyan Bhavan, New Delhi; appreciated by DST.
+    \item \textbf{Patent Initiatives:} Two innovation projects currently in the patent-pending stage.
+    \item \textbf{World Record Holder:} Recognized for a world record demonstrating discipline and commitment.
+    \item \textbf{Media Coverage:} Featured 4-5 times in national newspapers for innovative project work.
+    \item \textbf{International Exposure:} Participated in scientific innovation exchanges with German students.
+\end{itemize}
+
+% --- Certifications ---
+\section{Certifications}
+\begin{itemize}
+    \item \textbf{Embedded System Design} – Online Course (Completed Feb 2026)
+    \item \textbf{NIT Mentorship:} Advanced research and innovation practices workshop.
+\end{itemize}
+
+\end{document}
