@@ -8,7 +8,7 @@ model = torch.hub.load('ultralytics/yolov5', 'yolov5s')
 image_path = 'image.jpg'   # change your image path  
 img = cv2.imread(image_path)zz
 
-# Run detection
+# Run detection 
 results = model(img)
 
 # Print results
