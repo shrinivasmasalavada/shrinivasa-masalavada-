@@ -5,7 +5,7 @@ import cv2
 model = torch.hub.load('ultralytics/yolov5', 'yolov5s')
 
 # Load image
-image_path = 'image.jpg'   # change your image path
+image_path = 'image.jpg'   # change your image path  
 img = cv2.imread(image_path)
 
 # Run detection
