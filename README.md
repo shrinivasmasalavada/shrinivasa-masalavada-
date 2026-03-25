@@ -1,5 +1,4 @@
-
-,import torch
+import torch
 import cv2
 
 # Load YOLOv5 model
@@ -22,3 +21,4 @@ results.render()
 cv2.imshow("Detection", img)
 cv2.waitKey(0)
 cv2.destroyAllWindows()
+kk
