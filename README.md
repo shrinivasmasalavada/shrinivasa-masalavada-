@@ -1,24 +1,20 @@
-import torch
-import cv2
+import java.util.HashMap;
+import java.util.Map;
 
-# Load YOLOv5 model
-model = torch.hub.load('ultralytics/yolov5', 'yolov5s')
-
-# Load image
-image_path = 'image.jpg'   # change your image path  
-img = cv2.imread(image_path)zz
-
-# Run detection 
-results = model(img)
-
-# Print results
-results.print()
-
-# Draw boxes on image
-results.render()
-
-# Show output
-cv2.imshow("Detection", img)
-cv2.waitKey(0)
-cv2.destroyAllWindows()
-kk
+class Solution {
+    public int[] twoSum(int[] nums, int target) {
+        Map<Integer, Integer> map = new HashMap<>();
+        
+        for (int i = 0; i < nums.length; i++) {
+            int complement = target - nums[i];
+            
+            if (map.containsKey(complement)) {
+                return new int[] { map.get(complement), i };
+            }
+            
+            map.put(nums[i], i);
+        }
+        
+        return new int[] {}; 
+    }
+}
