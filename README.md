@@ -1,4 +1,4 @@
-import torch
+,import torch
 import cv2
 
 # Load YOLOv5 model
