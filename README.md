@@ -20,7 +20,7 @@ player_speed = 5
 # Bullet
 bullet_x = 0
 bullet_y = 500
-bullet_speed = 10
+bullet_speed = 10 .
 bullet_state = "ready"
 
 # Enemy
