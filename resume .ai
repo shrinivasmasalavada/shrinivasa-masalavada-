@@ -1,0 +1,85 @@
+import streamlit as st
+import PyPDF2
+
+# Resume text read function
+def extract_text_from_pdf(file):
+    pdf_reader = PyPDF2.PdfReader(file)
+    text = ""
+    for page in pdf_reader.pages:
+        text += page.extract_text()
+    return text
+
+# Simple analysis function
+def analyze_resume(text):
+    score = 0
+    suggestions = []
+
+    # Skills check
+    skills = ["python", "machine learning", "data analysis", "sql", "ai"]
+    found_skills = [skill for skill in skills if skill in text.lower()]
+
+    if len(found_skills) >= 3:
+        score += 30
+    else:
+        suggestions.append("Add more technical skills (Python, ML, SQL)")
+
+    # Projects check
+    if "project" in text.lower():
+        score += 20
+    else:
+        suggestions.append("Add at least 2 projects")
+
+    # Education check
+    if "bca" in text.lower() or "mca" in text.lower():
+        score += 20
+    else:
+        suggestions.append("Clearly mention your education")
+
+    # Experience check
+    if "experience" in text.lower() or "internship" in text.lower():
+        score += 20
+    else:
+        suggestions.append("Add internship or experience")
+
+    # Summary check
+    if "summary" in text.lower():
+        score += 10
+    else:
+        suggestions.append("Add a strong summary section")
+
+    return score, suggestions, found_skills
+
+# UI
+st.title("🤖 AI Resume Analyzer")
+
+uploaded_file = st.file_uploader("Upload your Resume (PDF only)", type=["pdf"])
+
+if uploaded_file is not None:
+    text = extract_text_from_pdf(uploaded_file)
+
+    st.subheader("📄 Extracted Resume Text")
+    st.write(text[:1000])  # show first 1000 chars
+
+    score, suggestions, skills = analyze_resume(text)
+
+    st.subheader("📊 Resume Score")
+    st.success(f"{score}/100")
+
+    st.subheader("✅ Skills Found")
+    st.write(skills)
+
+    st.subheader("⚠️ Suggestions")
+    for s in suggestions:
+        st.warning(s)
+
+    st.subheader("💼 Recommended Jobs")
+
+    if "python" in skills:
+        st.write("- Data Analyst")
+        st.write("- AI/ML Intern")
+
+    if "sql" in skills:
+        st.write("- Database Developer")
+
+    if len(skills) == 0:
+        st.write("Improve skills to get job recommendations")
