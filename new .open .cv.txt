@@ -1,0 +1,14 @@
+CONFIG = {
+    # Lower = more detections (may cause false positives)
+    "CONFIDENCE_THRESHOLD": 0.55,
+
+    # Seconds between sound beeps (avoids alarm fatigue)
+    "ALERT_COOLDOWN_SEC": 3,
+
+    # How many frames without ID before red alert fires
+    "MISSING_FRAMES_ALERT": 15,   # ≈ 0.5 s at 30 fps
+
+    # Reduce resolution on slow hardware
+    "FRAME_WIDTH": 640,
+    "FRAME_HEIGHT": 480,
+}
