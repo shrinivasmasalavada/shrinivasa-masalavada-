@@ -86,7 +86,7 @@ while running:
 
     # Draw player
     pygame.draw.rect(screen, white, (player_x, player_y, 50, 50))
-
+ 
     # Draw enemy
     pygame.draw.rect(screen, red, (enemy_x, enemy_y, 50, 50))
 
