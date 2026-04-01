@@ -2,7 +2,7 @@
 import random
 
 # Initialize pygame
-pygame.init()  n
+pygame.init()  n 
 
 # Screen
 screen = pygame.display.set_mode((800, 600))'
